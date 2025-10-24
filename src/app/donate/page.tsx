@@ -211,8 +211,9 @@ const DonationApp = () => {
   };
 
   return (
-    <div className="h-[300px] bg-[#00715D]">
-      <div className="relative z-10 flex items-center justify-center min-h-screen p-3 sm:p-4 md:p-6">
+    <div className="">
+      <div className='bg-[#00715D] h-[300px]'></div>
+      <div className="relative z-10 -top-64 flex items-center justify-center min-h-screen p-3 sm:p-4 md:p-6">
         <div className="w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl">
           {/* Success Modal */}
           {showSuccess && (

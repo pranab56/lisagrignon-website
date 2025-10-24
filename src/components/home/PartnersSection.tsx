@@ -8,9 +8,7 @@ export default function PartnersSection() {
   const partnerLogos = [
     { name: 'Amazon', src: 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg' },
     { name: 'Accenture', src: 'https://upload.wikimedia.org/wikipedia/commons/c/cd/Accenture.svg' },
-    { name: 'Johnson & Johnson', src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Logo_of_Johnson_%26_Johnson.svg/2560px-Logo_of_Johnson_%26_Johnson.svg.png' },
     { name: 'Dell', src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Dell_Logo.svg/2048px-Dell_Logo.svg.png' },
-    { name: 'Merck', src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Merck_Logo.svg/2560px-Merck_Logo.svg.png' },
     { name: 'Microsoft', src: 'https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg' },
     { name: 'Google', src: 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg' },
     { name: 'Apple', src: 'https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg' },
@@ -25,7 +23,6 @@ export default function PartnersSection() {
     { name: 'Cisco', src: 'https://upload.wikimedia.org/wikipedia/commons/0/08/Cisco_logo_blue_2016.svg' },
     { name: 'Adobe', src: 'https://upload.wikimedia.org/wikipedia/commons/8/8d/Adobe_Corporate_Logo.svg' },
   ];
-
 
   return (
     <div className="flex items-center justify-center p-6 overflow-hidden">
@@ -66,10 +63,11 @@ export default function PartnersSection() {
                   >
                     <Image
                       src={logo.src}
-                      width={10}
-                      height={10}
+                      width={192}
+                      height={96}
                       alt={logo.name}
                       className="max-w-full max-h-full object-contain"
+                      unoptimized
                     />
                   </div>
                 ))}
@@ -87,9 +85,10 @@ export default function PartnersSection() {
                     <Image
                       src={logo.src}
                       alt={logo.name}
-                      width={10}
-                      height={10}
+                      width={192}
+                      height={96}
                       className="max-w-full max-h-full object-contain"
+                      unoptimized
                     />
                   </div>
                 ))}

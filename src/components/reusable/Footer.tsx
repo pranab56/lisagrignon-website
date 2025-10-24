@@ -36,12 +36,12 @@ export default function Footer() {
     {
       id: 2,
       name: 'How It Works',
-      href: '/how-it-works'
+      href: '/how-its-works'
     },
     {
       id: 3,
       name: 'Blog',
-      href: '/blog'
+      href: '/blogs'
     },
     {
       id: 4,
@@ -51,13 +51,36 @@ export default function Footer() {
   ]
 
   const socialLinks = [
-    { icon: Facebook, label: 'Facebook' },
-    { icon: Linkedin, label: 'LinkedIn' },
-    { icon: Instagram, label: 'Instagram' },
-    { icon: Twitter, label: 'Twitter' }
+    { icon: Facebook, label: 'Facebook', heref: 'https://www.facebook.com/' },
+    { icon: Linkedin, label: 'LinkedIn', heref: 'https://www.linkedin.com/' },
+    { icon: Instagram, label: 'Instagram', heref: 'https://www.instagram.com/' },
+    { icon: Twitter, label: 'Twitter', heref: 'https://www.twitter.com/' },
   ];
 
-  const policyLinks = ['Terms & Conditions', 'Privacy Policy', 'Cookie Policy'];
+  // const policyLinks = ['Terms & Conditions', 'Privacy Policy', 'Cookie Policy'];
+  const policyLinks = [
+    {
+      id: 1,
+      name: 'Terms & Conditions',
+      href: '/terms-conditions'
+    },
+    {
+      id: 2,
+      name: 'Win and Give',
+      href: '/win-give'
+    },
+    {
+      id: 3,
+      name: 'Why Choose US',
+      href: '/whychoose'
+    },
+    {
+      id: 4,
+      name: 'Privacy Policy',
+      href: '/privacy-policy'
+    }
+  ]
+
 
   return (
     <footer className="bg-slate-900 text-white rounded-t-4xl">
@@ -216,27 +239,27 @@ export default function Footer() {
             {/* Social Links */}
             <div className="flex gap-3 lg:gap-4 order-1 md:order-2">
               {socialLinks.map((social) => (
-                <a
+                <Link
                   key={social.label}
-                  href="#"
+                  href={social.heref}
                   className="text-teal-500 hover:text-teal-400 transition-colors"
                   aria-label={social.label}
                 >
                   <social.icon className="w-5 h-5 sm:w-6 sm:h-6" />
-                </a>
+                </Link>
               ))}
             </div>
 
             {/* Policy Links */}
             <div className="flex flex-wrap justify-center gap-4 lg:gap-6 text-sm order-3">
               {policyLinks.map((link) => (
-                <a
-                  key={link}
-                  href="#"
+                <Link
+                  key={link.id}
+                  href={link.href}
                   className="text-yellow-500 hover:text-yellow-400 transition-colors whitespace-nowrap"
                 >
-                  {link}
-                </a>
+                  {link.name}
+                </Link>
               ))}
             </div>
           </div>

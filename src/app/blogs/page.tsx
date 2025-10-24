@@ -2,6 +2,7 @@
 
 import { Clock } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 interface BlogPost {
@@ -10,7 +11,7 @@ interface BlogPost {
   readTime: string;
   title: string;
   excerpt: string;
-  link: string;
+  
 }
 
 export default function BlogSection() {
@@ -24,7 +25,7 @@ export default function BlogSection() {
       readTime: "10 mins read",
       title: "Making Waves for a Great Cause: Galway Bay Swim 2025",
       excerpt: "On Saturday July 19th, a group of courageous swimmers took on one of Ireland's toughest open water challenges, a13km swim across Galway Bay.all in support of Cancer Care West. The event fundraised 17% more compared to 2024, with the percentage of fundraising pages with donations up 17%.",
-      link: "#"
+      
     },
     {
       id: 2,
@@ -32,7 +33,7 @@ export default function BlogSection() {
       readTime: "10 mins read",
       title: "Making Waves for a Great Cause: Galway Bay Swim 2025",
       excerpt: "On Saturday July 19th, a group of courageous swimmers took on one of Ireland's toughest open water challenges, a13km swim across Galway Bay.all in support of Cancer Care West. The event fundraised 17% more compared to 2024, with the percentage of fundraising pages with donations up 17%.",
-      link: "#"
+      
     },
     {
       id: 3,
@@ -40,7 +41,7 @@ export default function BlogSection() {
       readTime: "10 mins read",
       title: "Making Waves for a Great Cause: Galway Bay Swim 2025",
       excerpt: "On Saturday July 19th, a group of courageous swimmers took on one of Ireland's toughest open water challenges, a13km swim across Galway Bay.all in support of Cancer Care West. The event fundraised 17% more compared to 2024, with the percentage of fundraising pages with donations up 17%.",
-      link: "#"
+      
     },
     {
       id: 4,
@@ -48,7 +49,6 @@ export default function BlogSection() {
       readTime: "10 mins read",
       title: "Making Waves for a Great Cause: Galway Bay Swim 2025",
       excerpt: "On Saturday July 19th, a group of courageous swimmers took on one of Ireland's toughest open water challenges, a13km swim across Galway Bay.all in support of Cancer Care West. The event fundraised 17% more compared to 2024, with the percentage of fundraising pages with donations up 17%.",
-      link: "#"
     }
   ];
 
@@ -136,13 +136,8 @@ export default function BlogSection() {
 
                   {/* Read More Link */}
                   {/* Using an anchor tag inside the clickable article is generally fine, but if the whole card handles navigation, you might consider making the "Read More" button a primary focus inside the onClick handler or removing the nested <a>. */}
-                  <a
-                    href={post.link}
-                    onClick={(e) => {
-                      // Prevents the article's onClick from triggering if the link is clicked
-                      e.stopPropagation();
-                      router.push(`/blogs/${post.id}`);
-                    }}
+                  <Link
+                    href={`/blogs/${post.id}`}
                     className="text-orange-500 text-sm font-medium hover:text-orange-600 transition-colors inline-flex items-center"
                   >
                     Read More
@@ -159,7 +154,7 @@ export default function BlogSection() {
                         d="M9 5l7 7-7 7"
                       />
                     </svg>
-                  </a>
+                  </Link>
                 </div>
               </article>
             ))}
