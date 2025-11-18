@@ -40,7 +40,7 @@ export default function Header() {
           <Button
             className="p-0 border bg-transparent h-10 hover:bg-white relative"
             onClick={() => {
-              router.push("/notifications");
+              router.push("/my-dashboard/user/notifications");
             }}
           >
             <IoIosNotificationsOutline className="text-black" />

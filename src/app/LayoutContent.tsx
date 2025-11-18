@@ -7,15 +7,14 @@ import Navbar from '../components/reusable/Navber';
 function LayoutContent({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isAuthRoute = pathname?.startsWith('/auth');
+  const isdashboardRoute = pathname?.startsWith('/my-dashboard');
 
   return (
     <>
-      {!isAuthRoute && <Navbar />}
+      {!isAuthRoute || !isdashboardRoute && <Navbar />}
       {children}
-      {!isAuthRoute && <Footer />}
+      {!isAuthRoute || !isdashboardRoute && <Footer />}
     </>
   );
 }
-
-
 export default LayoutContent;

@@ -46,7 +46,7 @@ const sidebars: SidebarItem[] = [
     icon: FaUsers,
   },
   {
-    name: "Notifications    ",
+    name: "Notifications",
     path: "/my-dashboard/organizer/notifications",
     icon: PiBellBold,
     isCustomIcon: false,
@@ -79,7 +79,7 @@ export function AppSidebar() {
             />
 
             <h1 className="text-bold text-white text-2xl mt-2">
-              Admin Dashboard
+              Organizer
             </h1>
           </SidebarGroupLabel>
 

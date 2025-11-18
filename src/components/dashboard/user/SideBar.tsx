@@ -79,7 +79,7 @@ export function AppSidebar() {
             />
 
             <h1 className="text-bold text-white text-2xl mt-2">
-              Admin Dashboard
+              User Dashboard
             </h1>
           </SidebarGroupLabel>
 
