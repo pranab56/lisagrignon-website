@@ -28,6 +28,7 @@ import {
   User,
 } from 'lucide-react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 
 // Define types for form data
@@ -94,6 +95,7 @@ const CrowdfundingForm = () => {
   const [coverImagePreview, setCoverImagePreview] = useState<string | null>(null);
   const [showSuccess, setShowSuccess] = useState<boolean>(false);
   const [isMounted, setIsMounted] = useState<boolean>(false);
+  const router = useRouter();
 
   // Ensure component is mounted (client-side) before initializing editor
   useEffect(() => {
@@ -243,7 +245,8 @@ const CrowdfundingForm = () => {
       setShowSuccess(true);
       setTimeout(() => {
         setShowSuccess(false);
-      }, 3000);
+        router.push("/register-cause")
+      }, 1000);
     } else {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }

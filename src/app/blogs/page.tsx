@@ -11,7 +11,7 @@ interface BlogPost {
   readTime: string;
   title: string;
   excerpt: string;
-  
+
 }
 
 export default function BlogSection() {
@@ -25,7 +25,7 @@ export default function BlogSection() {
       readTime: "10 mins read",
       title: "Making Waves for a Great Cause: Galway Bay Swim 2025",
       excerpt: "On Saturday July 19th, a group of courageous swimmers took on one of Ireland's toughest open water challenges, a13km swim across Galway Bay.all in support of Cancer Care West. The event fundraised 17% more compared to 2024, with the percentage of fundraising pages with donations up 17%.",
-      
+
     },
     {
       id: 2,
@@ -33,7 +33,7 @@ export default function BlogSection() {
       readTime: "10 mins read",
       title: "Making Waves for a Great Cause: Galway Bay Swim 2025",
       excerpt: "On Saturday July 19th, a group of courageous swimmers took on one of Ireland's toughest open water challenges, a13km swim across Galway Bay.all in support of Cancer Care West. The event fundraised 17% more compared to 2024, with the percentage of fundraising pages with donations up 17%.",
-      
+
     },
     {
       id: 3,
@@ -41,7 +41,7 @@ export default function BlogSection() {
       readTime: "10 mins read",
       title: "Making Waves for a Great Cause: Galway Bay Swim 2025",
       excerpt: "On Saturday July 19th, a group of courageous swimmers took on one of Ireland's toughest open water challenges, a13km swim across Galway Bay.all in support of Cancer Care West. The event fundraised 17% more compared to 2024, with the percentage of fundraising pages with donations up 17%.",
-      
+
     },
     {
       id: 4,
@@ -61,30 +61,26 @@ export default function BlogSection() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <section className="bg-teal-700 text-white py-16 px-4">
+      <section className="bg-[#00715D] text-white py-32 px-4">
         <div className="max-w-6xl mx-auto text-center">
           {/* Blogs Badge */}
           <div className="flex justify-center mb-6">
-            <div className="bg-gray-900 rounded-full px-4 py-2 flex items-center gap-2">
+            <div className="bg-gray-900 rounded px-4 py-2 flex items-center gap-2">
               <span className="text-sm font-medium">Blogs</span>
-              <span className="w-2 h-2 bg-red-500 rounded-full"></span>
+              <Image
+                width={1000}
+                height={1000}
+                src="/icons/research.png"
+                alt="tickit"
+                className='w-7 h-7'
+              />
             </div>
           </div>
 
           {/* Main Heading */}
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
-            Stay Updated with the Latest News at RaffleRise
+            Insights, Ideas & Inspiration for Fundraising
           </h1>
-
-          {/* Description Paragraphs */}
-          <div className="max-w-4xl mx-auto space-y-4 text-sm md:text-base leading-relaxed">
-            <p>
-              RaffleRise, we&apos;re not just about providing cutting-edge tools for charities and fundraisers—we&apos;re about creating meaningful change in communities across Ireland. Our news page is your go-to source for the latest updates on fundraising milestones, innovative features, and inspiring stories from the charities we support.
-            </p>
-            <p>
-              From event highlights and case studies to platform enhancements that make giving easier, we&apos;re committed to helping organisations maximise their impact. Explore how iDonate continues to evolve, empowering charities and individuals to raise more and do more for the causes that matter most.
-            </p>
-          </div>
         </div>
       </section>
 

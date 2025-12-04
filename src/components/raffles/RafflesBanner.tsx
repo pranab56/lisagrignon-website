@@ -1,5 +1,3 @@
-import Image from 'next/image';
-import { Button } from '../ui/button';
 
 export default function RafflesBanner() {
   return (
@@ -7,7 +5,7 @@ export default function RafflesBanner() {
       <div className="container mx-auto w-full max-w-7xl">
         <div className="text-center space-y-6 sm:space-y-8 md:space-y-10 lg:space-y-12">
           {/* Button Section */}
-          <div className="flex justify-center items-center">
+          {/* <div className="flex justify-center items-center">
             <Button
               variant="secondary"
               className="bg-gray-900 hover:bg-gray-800 text-white rounded-md flex items-center gap-2 
@@ -25,7 +23,7 @@ export default function RafflesBanner() {
                 className="w-4 h-4 sm:w-5 sm:h-5"
               />
             </Button>
-          </div>
+          </div> */}
 
           {/* Main Heading */}
           <h1 className="text-white font-bold leading-tight

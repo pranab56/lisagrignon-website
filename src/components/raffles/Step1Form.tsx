@@ -1,18 +1,24 @@
 "use client";
 
 import { Button } from '@/components/ui/button';
+import { Calendar } from '@/components/ui/calendar';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { cn } from '@/lib/utils';
 import TextAlign from '@tiptap/extension-text-align';
 import UnderlineExt from '@tiptap/extension-underline';
 import { Editor, EditorContent, useEditor } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
+import { format } from 'date-fns';
 import {
   AlignCenter,
   AlignLeft,
   AlignRight,
   ArrowRight,
   Bold,
+  CalendarIcon,
+  ChevronDown,
   Italic,
   List,
   ListOrdered,
@@ -61,6 +67,7 @@ const Step1Form: React.FC<Step1FormProps> = ({ onNext }) => {
 
   const [errors, setErrors] = useState<Errors>({});
   const [imagePreview, setImagePreview] = useState<string>('');
+  const [causeOpen, setCauseOpen] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const raffleEditor = useEditor({
@@ -293,9 +300,49 @@ const Step1Form: React.FC<Step1FormProps> = ({ onNext }) => {
             <Label className="text-gray-700 font-medium block mb-2">
               Cause <span className="text-red-500">*</span>
             </Label>
-            <Input type="text" value={formData.cause}
-              onChange={(e) => handleChange('cause', e.target.value)}
-              className={errors.cause ? 'border-red-500' : ''} />
+            <Popover open={causeOpen} onOpenChange={setCauseOpen}>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="outline"
+                  role="combobox"
+                  aria-expanded={causeOpen}
+                  className={cn(
+                    "w-full justify-between font-normal",
+                    !formData.cause && "text-muted-foreground",
+                    errors.cause && "border-red-500"
+                  )}
+                >
+                  {formData.cause || "Select cause..."}
+                  <ChevronDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-full p-0" align="start">
+                <div className="max-h-[300px] overflow-auto">
+                  {[
+                    'Education',
+                    'Healthcare',
+                    'Environment',
+                    'Animal Welfare',
+                    'Community Development',
+                    'Disaster Relief',
+                    'Arts & Culture',
+                    'Sports',
+                    'Other'
+                  ].map((cause) => (
+                    <div
+                      key={cause}
+                      className="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                      onClick={() => {
+                        handleChange('cause', cause);
+                        setCauseOpen(false);
+                      }}
+                    >
+                      {cause}
+                    </div>
+                  ))}
+                </div>
+              </PopoverContent>
+            </Popover>
             {errors.cause && <p className="text-red-500 text-sm mt-1">{errors.cause}</p>}
           </div>
 
@@ -305,9 +352,33 @@ const Step1Form: React.FC<Step1FormProps> = ({ onNext }) => {
                 Ticket Sale End Date & Time <span className="text-red-500">*</span>
               </Label>
               <div className="flex gap-2">
-                <Input type="date" value={formData.ticketSaleEndDate}
-                  onChange={(e) => handleChange('ticketSaleEndDate', e.target.value)}
-                  className={`flex-1 ${errors.ticketSaleEndDate ? 'border-red-500' : ''}`} />
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      className={cn(
+                        "flex-1 justify-start text-left font-normal",
+                        !formData.ticketSaleEndDate && "text-muted-foreground",
+                        errors.ticketSaleEndDate && "border-red-500"
+                      )}
+                    >
+                      <CalendarIcon className="mr-2 h-4 w-4" />
+                      {formData.ticketSaleEndDate ? format(new Date(formData.ticketSaleEndDate), "PPP") : "Pick a date"}
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0" align="start">
+                    <Calendar
+                      mode="single"
+                      selected={formData.ticketSaleEndDate ? new Date(formData.ticketSaleEndDate) : undefined}
+                      onSelect={(date) => {
+                        if (date) {
+                          handleChange('ticketSaleEndDate', format(date, 'yyyy-MM-dd'));
+                        }
+                      }}
+                      initialFocus
+                    />
+                  </PopoverContent>
+                </Popover>
                 <Input type="time" value={formData.ticketSaleEndTime}
                   onChange={(e) => handleChange('ticketSaleEndTime', e.target.value)}
                   className={`flex-1 ${errors.ticketSaleEndTime ? 'border-red-500' : ''}`} />
@@ -318,8 +389,32 @@ const Step1Form: React.FC<Step1FormProps> = ({ onNext }) => {
             </div>
             <div>
               <Label className="text-gray-700 font-medium block mb-2">Draw Date (If Known)</Label>
-              <Input type="date" value={formData.drawDate}
-                onChange={(e) => handleChange('drawDate', e.target.value)} />
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    className={cn(
+                      "w-full justify-start text-left font-normal",
+                      !formData.drawDate && "text-muted-foreground"
+                    )}
+                  >
+                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    {formData.drawDate ? format(new Date(formData.drawDate), "PPP") : "Pick a date"}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0" align="start">
+                  <Calendar
+                    mode="single"
+                    selected={formData.drawDate ? new Date(formData.drawDate) : undefined}
+                    onSelect={(date) => {
+                      if (date) {
+                        handleChange('drawDate', format(date, 'yyyy-MM-dd'));
+                      }
+                    }}
+                    initialFocus
+                  />
+                </PopoverContent>
+              </Popover>
             </div>
           </div>
 

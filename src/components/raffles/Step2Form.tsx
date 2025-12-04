@@ -193,13 +193,13 @@ export default function Step2Form({ onBack, onCreate, onTicketOptionsUpdate, tic
                 <div className="flex justify-center gap-3">
                   <button
                     onClick={() => handleEditTicket(ticket)}
-                    className="text-teal-600 hover:text-teal-700"
+                    className="text-teal-600 cursor-pointer hover:text-teal-700"
                   >
                     <Pencil className="w-5 h-5" />
                   </button>
                   <button
                     onClick={() => handleDeleteTicket(ticket.id)}
-                    className="text-red-500 hover:text-red-600"
+                    className="text-red-500 hover:text-red-600 cursor-pointer"
                   >
                     <Trash2 className="w-5 h-5" />
                   </button>

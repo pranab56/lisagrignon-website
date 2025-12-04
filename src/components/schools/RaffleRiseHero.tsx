@@ -1,8 +1,12 @@
+"use client"
+
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowRight, Heart, Settings } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 export default function RaffleRiseHero() {
+  const router = useRouter();
   const features = [
     {
       title: "Tailored for Sports Clubs of All Sizes",
@@ -63,10 +67,11 @@ export default function RaffleRiseHero() {
         {/* CTA Button */}
         <div className="text-center">
           <Button
+            onClick={() => router.push("/register-cause")}
             className="bg-yellow-500 hover:bg-yellow-600 text-gray-900 font-semibold px-6 sm:px-8 lg:px-10 py-4 sm:py-5 lg:py-6 text-sm sm:text-base lg:text-lg rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
             size="lg"
           >
-            Register your Club
+            Register your School
             <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
           </Button>
         </div>

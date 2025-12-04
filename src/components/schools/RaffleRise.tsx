@@ -1,7 +1,11 @@
+"use client"
+
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Sparkles } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 export default function RaffleRiseLanding() {
+  const router = useRouter();
   return (
     <div className="bg-[#00715D] flex items-center justify-center p-4 sm:p-6">
       <div className="container mx-auto w-full text-center space-y-6 sm:space-y-8 py-8 sm:py-12 lg:py-16">
@@ -38,6 +42,7 @@ export default function RaffleRiseLanding() {
 
         {/* CTA Button */}
         <Button
+          onClick={() => router.push("/register-cause")}
           className="bg-primary text-[#101A24] font-semibold px-4 sm:px-6 md:px-8 w-full sm:w-10/12 md:w-8/12 lg:w-6/12 xl:w-4/12 py-4 sm:py-5 md:py-6 text-base sm:text-lg md:text-xl rounded-lg flex items-center justify-center gap-2 mx-auto transition-all duration-200 shadow-lg hover:shadow-xl"
         >
           Register your School <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 lg:w-10 lg:h-10" />

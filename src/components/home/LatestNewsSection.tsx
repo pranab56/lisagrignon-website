@@ -1,10 +1,14 @@
+"use client";
+
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { ArrowRight, BookOpen, Clock } from 'lucide-react';
+import { ArrowRight, Clock } from 'lucide-react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export default function LatestNewsSection() {
+  const router = useRouter();
   const newsArticles = [
     {
       id: 1,
@@ -46,9 +50,15 @@ export default function LatestNewsSection() {
         {/* Header */}
         <div className="text-center space-y-6 mb-12">
           <div className="flex justify-center">
-            <Badge className="bg-teal-700 hover:bg-teal-800 text-white px-5 py-2.5 text-base font-medium rounded-lg">
+            <Badge className="bg-[#00715D] flex gap-2 hover:bg-teal-800 text-white px-5 py-2.5 text-base font-medium rounded-lg">
               Blog
-              <BookOpen className="ml-2 w-4 h-4" />
+              <Image
+                src="/icons/blog.png"
+                width={1000}
+                height={1000}
+                alt="Happy celebration with confetti"
+                className="w-6 h-6 object-cover"
+              />
             </Badge>
           </div>
 
@@ -93,7 +103,7 @@ export default function LatestNewsSection() {
                 </p>
 
                 {/* Read More Link */}
-                <button className="text-yellow-500 hover:text-yellow-600 font-semibold text-sm inline-flex items-center group/link">
+                <button onClick={() => router.push(`/blogs/${article.id}`)} className="text-yellow-500 cursor-pointer hover:text-yellow-600 font-semibold text-sm inline-flex items-center group/link">
                   Read More
                   <ArrowRight className="ml-1 w-4 h-4 group-hover/link:translate-x-1 transition-transform" />
                 </button>
@@ -106,6 +116,7 @@ export default function LatestNewsSection() {
         <div className="flex justify-center">
           <Button
             variant="outline"
+            onClick={() => router.push("/blogs")}
             className="border-2 border-teal-600 text-teal-600 hover:bg-teal-600 hover:text-white font-semibold h-12 px-8 text-base rounded-lg transition-all"
           >
             See All

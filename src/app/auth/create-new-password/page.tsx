@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { ArrowRight, Eye, EyeOff } from 'lucide-react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { ChangeEvent, FocusEvent, KeyboardEvent, useState } from 'react';
 
 interface FormData {
@@ -32,6 +33,7 @@ export default function CreateNewPassword() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false);
   const [touched, setTouched] = useState<TouchedFields>({});
+  const router = useRouter();
 
   const validateField = (name: keyof FormData, value: string): string => {
     switch (name) {
@@ -88,7 +90,9 @@ export default function CreateNewPassword() {
 
     if (Object.keys(newErrors).length === 0) {
       console.log('Password changed successfully');
-      alert('Your password has been changed successfully!');
+      // alert('Your password has been changed successfully!');
+      router.push('/auth/signin');
+
     }
   };
 
@@ -105,15 +109,17 @@ export default function CreateNewPassword() {
         <div className="w-full max-w-lg shadow-sm border border-gray-100 sm:p-10 p-4 rounded-xl">
           {/* Logo */}
           <div className="flex justify-center mb-8">
-            <Image src={"/icons/logo.png"} alt='website logo' height={0} width={1000} className='w-[60px] h-[60px]' />
+            <div className="w-16 h-16 rounded-xl flex items-center justify-center">
+              <Image src={"/icons/Logo.png"} alt='website logo' height={60} width={60} className='rounded-xl' />
+            </div>
           </div>
 
           <h1 className="text-3xl font-bold text-center mb-4 text-gray-900">
             Create New Password
           </h1>
 
-          <p className="text-center text-gray-500 text-sm mb-8 leading-relaxed">
-            To help keep your account safe, House Finder wants to make sure it&apos;s really you trying to sign in.
+          <p className="text-center text-gray-600 text-sm mb-8 leading-relaxed px-4">
+            To help keep your account safe, House Finder wants to make sure it's really you trying to sign in.
           </p>
 
           <div className="space-y-5" onKeyPress={handleKeyPress}>
@@ -178,7 +184,7 @@ export default function CreateNewPassword() {
             {/* Change Password Button */}
             <Button
               onClick={handleSubmit}
-              className="w-full bg-primary text-gray-900 font-semibold py-6 rounded-lg transition-colors"
+              className="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-6 rounded-lg transition-colors"
             >
               Change Password <ArrowRight className="ml-2" size={20} />
             </Button>
@@ -187,14 +193,14 @@ export default function CreateNewPassword() {
       </div>
 
       {/* Right side - Image */}
-      <div className="hidden lg:block lg:w-1/2 relative ">
+      <div className="hidden lg:block lg:w-1/2 relative bg-gray-100">
         <Image
           src="/images/auth/auth.jpg"
-          alt="Mountain climbers"
+          alt="Charity donation jar"
           fill
-          className="object-fill"
+          className="object-cover"
           placeholder="blur"
-          blurDataURL="/images/blur-placeholder.jpg" // small low-res image
+          blurDataURL="/images/blur-placeholder.jpg"
         />
       </div>
     </div>

@@ -3,6 +3,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { ArrowRight, DollarSign, Heart, Ticket, Users } from 'lucide-react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { FundraisingBanner } from '../../components/home/FundraisingBanner';
@@ -57,10 +58,10 @@ const FundraisingPlatform = () => {
   const handleStartNow = (optionId: string) => {
     setSelectedOption(optionId);
     setShowValidation(true);
-    setTimeout(() => {
-      setShowValidation(false);
-      router.push(`/fundraising/SelectCause`);
-    }, 3000);
+
+    setShowValidation(false);
+    router.push(`/fundraising/SelectCause`);
+
   };
 
 
@@ -70,11 +71,17 @@ const FundraisingPlatform = () => {
     <div className="">
       {/* Hero Section */}
       <div className="bg-[#00715D] py-12 sm:py-16 md:py-20 px-3 sm:px-4 mb-8 sm:mb-10 md:mb-12">
-        <div className="container mx-auto text-center max-w-6xl">
+        <div className="container mx-auto text-center">
           {/* Badge */}
           <div className="inline-flex items-center gap-1 sm:gap-2 bg-gray-900 text-white px-4 sm:px-5 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-full mb-6 sm:mb-7 md:mb-8">
             <span className="font-semibold text-xs sm:text-sm md:text-base">Fundraising on RaffleRise</span>
-            <span className="text-lg sm:text-xl md:text-2xl">🎯</span>
+            <Image
+              src="/icons/research.png"
+              width={1000}
+              height={1000}
+              alt="Happy celebration with confetti"
+              className="w-7 h-7 object-cover"
+            />
           </div>
 
           {/* Main Heading */}
@@ -116,53 +123,61 @@ const FundraisingPlatform = () => {
               >
                 <CardContent className="p-4 sm:p-5 md:p-6 flex flex-col h-full">
                   {/* Badge */}
-                  <div className="mb-3 sm:mb-4">
-                    <span className="inline-block px-2 sm:px-3 py-1 text-xs font-semibold text-teal-700 bg-teal-100 rounded-full">
+                  <div className="mb-3 flex justify-center sm:mb-4">
+                    <span className=" px-2 sm:px-5 pt-2 pb-3 text-xs font-semibold text-teal-700 bg-[#00715D1F] rounded">
                       {option.badge}
                     </span>
                   </div>
 
                   {/* Title */}
-                  <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3 sm:mb-4 min-h-[48px] sm:min-h-[56px] leading-tight">
+                  <h3 className="text-base sm:text-lg font-medium text-[#00715D] mb-3 sm:mb-4 min-h-[48px] sm:min-h-[56px] leading-tight">
                     {option.title}
                   </h3>
 
                   {/* Icon */}
-                  <div className={`${option.bgColor} rounded-lg p-4 sm:p-5 md:p-6 mb-3 sm:mb-4 flex items-center justify-center`}>
+                  <div className={` rounded-lg p-4 sm:p-5 md:p-6 mb-3 sm:mb-4 flex items-center justify-center`}>
                     {option.id === 'charity' && (
                       <div className="relative">
-                        <div className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 bg-amber-600 rounded-full flex items-center justify-center">
-                          <span className="text-xl sm:text-2xl md:text-3xl text-white font-bold">€</span>
-                        </div>
-                        <div className="absolute -bottom-1 -left-1 sm:-bottom-2 sm:-left-2 w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8 bg-yellow-400 rounded-full"></div>
-                        <div className="absolute -bottom-0.5 -right-1.5 sm:-bottom-1 sm:-right-3 w-3 h-3 sm:w-4 sm:h-4 md:w-6 md:h-6 bg-yellow-400 rounded-full"></div>
+                        <Image
+                          src="/icons/fundraising/fundraiser.png"
+                          width={1000}
+                          height={1000}
+                          alt="Happy celebration with confetti"
+                          className="w-full h-full object-cover"
+                        />
                       </div>
                     )}
                     {option.id === 'crowdfunder' && (
                       <div className="relative">
-                        <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-br from-teal-400 to-teal-600 rounded-full flex items-center justify-center mb-1 sm:mb-2">
-                          <DollarSign className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-white" />
-                        </div>
-                        <div className="flex gap-1 sm:gap-2 mt-1 sm:mt-2">
-                          <div className="w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8 bg-gradient-to-br from-pink-400 to-pink-500 rounded-full"></div>
-                          <div className="w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8 bg-gradient-to-br from-blue-400 to-blue-500 rounded-full"></div>
-                        </div>
+                        <Image
+                          src="/icons/fundraising/crowdfunder.png"
+                          width={1000}
+                          height={1000}
+                          alt="Happy celebration with confetti"
+                          className="w-full h-full object-cover"
+                        />
                       </div>
                     )}
                     {option.id === 'register' && (
                       <div className="relative">
-                        <Heart className="w-12 h-12 sm:w-16 sm:h-16 md:w-20 md:h-20 text-pink-500 fill-pink-500" />
-                        <div className="absolute bottom-0 left-0 w-4 h-8 sm:w-6 sm:h-12 md:w-8 md:h-16 bg-blue-400 rounded-t-full"></div>
+                        <Image
+                          src="/icons/fundraising/charity.png"
+                          width={1000}
+                          height={1000}
+                          alt="Happy celebration with confetti"
+                          className="w-full h-full object-cover"
+                        />
                       </div>
                     )}
                     {option.id === 'raffle' && (
                       <div className="relative">
-                        <div className="w-16 h-14 sm:w-20 sm:h-16 md:w-24 md:h-20 bg-yellow-400 rounded-lg border-2 sm:border-3 md:border-4 border-yellow-500 flex items-center justify-center transform rotate-3">
-                          <div className="text-center">
-                            <Ticket className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-gray-800 mx-auto mb-0.5 sm:mb-1" />
-                            <div className="text-xs font-bold text-gray-800">TICKET</div>
-                          </div>
-                        </div>
+                        <Image
+                          src="/icons/fundraising/raffles.png"
+                          width={1000}
+                          height={1000}
+                          alt="Happy celebration with confetti"
+                          className="w-full h-full object-cover"
+                        />
                       </div>
                     )}
                   </div>
@@ -189,7 +204,7 @@ const FundraisingPlatform = () => {
         {/* Additional Information Section */}
         <div className="bg-white rounded-lg p-4 sm:p-6 md:p-8 shadow-sm border border-gray-100">
           <div className="mb-4 sm:mb-5 md:mb-6">
-            <span className="inline-block px-2 sm:px-3 py-1 text-xs font-semibold text-teal-700 bg-teal-100 rounded-full">
+            <span className="inline-block px-2 sm:px-3 pt-2 pb-3 text-sm font-semibold text-teal-700 bg-[#00715D1F] rounded">
               Additional Information
             </span>
           </div>

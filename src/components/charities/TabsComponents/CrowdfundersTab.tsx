@@ -15,8 +15,8 @@ export default function CrowdfundersTab() {
                 <Image
                   src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=500&q=80"
                   alt="Happy raffle winners"
-                  width={10}
-                  height={10}
+                  width={1000}
+                  height={1000}
                   className="rounded-xl sm:rounded-2xl w-full h-48 sm:h-56 lg:h-64 object-cover relative z-10 transform -rotate-2 sm:-rotate-3"
                 />
               </div>

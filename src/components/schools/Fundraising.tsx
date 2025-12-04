@@ -1,9 +1,12 @@
 // ./src/app/fundraising/page.tsx
+"use client";
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 export default function FundraisingSection() {
+  const router = useRouter();
   return (
     <div className="flex items-center justify-center p-4 sm:p-6 lg:p-8">
       <div className="container mx-auto">
@@ -40,9 +43,10 @@ export default function FundraisingSection() {
             </div>
 
             <Button
+              onClick={() => router.push("/register-cause")}
               className="bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold h-10 sm:h-12 lg:h-14 px-6 sm:px-8 lg:px-10 text-sm sm:text-base lg:text-lg shadow-lg hover:shadow-xl transition-all duration-300 w-full sm:w-auto"
             >
-              View Live Raffles
+              Register your School
               <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
             </Button>
           </div>

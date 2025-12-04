@@ -11,9 +11,9 @@ function LayoutContent({ children }: { children: React.ReactNode }) {
 
   return (
     <>
-      {!isAuthRoute || !isdashboardRoute && <Navbar />}
+      {isAuthRoute || !isdashboardRoute && <Navbar />}
       {children}
-      {!isAuthRoute || !isdashboardRoute && <Footer />}
+      {isAuthRoute || !isdashboardRoute && <Footer />}
     </>
   );
 }

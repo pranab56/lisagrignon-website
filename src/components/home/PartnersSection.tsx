@@ -30,9 +30,15 @@ export default function PartnersSection() {
         <div className="text-center space-y-8">
           {/* Badge */}
           <div className="flex justify-center">
-            <Badge className="bg-teal-700 hover:bg-teal-800 text-white px-5 py-2.5 text-base font-medium rounded-lg">
+            <Badge className="bg-[#00715D] flex gap-2 hover:bg-teal-800 text-white px-5 py-2.5 text-base font-medium rounded-lg">
               Partners
-              <Handshake className="ml-2 w-4 h-4" />
+              <Image
+                src="/icons/group-arrows.png"
+                width={1000}
+                height={1000}
+                alt="Happy celebration with confetti"
+                className="w-7 h-7 object-cover"
+              />
             </Badge>
           </div>
 

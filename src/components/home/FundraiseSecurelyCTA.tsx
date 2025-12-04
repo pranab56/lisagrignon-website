@@ -2,7 +2,8 @@
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Lock } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 export default function FundraiseSecurelyCTA() {
@@ -14,10 +15,16 @@ export default function FundraiseSecurelyCTA() {
       <div className="container mx-auto max-w-6xl">
         <div className="text-center space-y-8">
           {/* Badge */}
-          <div className="flex justify-center">
-            <Badge className="bg-teal-700 hover:bg-teal-800 text-white px-5 py-2.5 text-base font-medium rounded-lg">
+          <div className="flex justify-center ">
+            <Badge className="bg-[#00715D] flex justify-center gap-2  hover:bg-teal-800 text-white px-5 py-2.5 text-base font-medium rounded-lg">
               Fundraise Securely
-              <Lock className="ml-2 w-4 h-4 fill-yellow-400 text-yellow-400" />
+              <Image
+                src="/icons/padlock.png"
+                width={1000}
+                height={1000}
+                alt="Happy celebration with confetti"
+                className="w-6 h-6 object-cover"
+              />
             </Badge>
           </div>
 

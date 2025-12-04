@@ -6,9 +6,9 @@ import {
   DropdownMenuContent,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
+import { Input } from '@/components/ui/input';
 import {
   ArrowRight,
-  Briefcase,
   Club,
   DollarSign,
   HeartHandshake,
@@ -24,89 +24,91 @@ import { useState } from 'react';
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+  const [isSearchOpen, setIsSearchOpen] = useState<boolean>(false);
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  const [aboutDropdownOpen, setAboutDropdownOpen] = useState<boolean>(false);
+  const [featuresDropdownOpen, setFeaturesDropdownOpen] = useState<boolean>(false);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const toggleSearch = () => {
+    setIsSearchOpen(!isSearchOpen);
+    if (!isSearchOpen) {
+      setSearchQuery('');
+    }
+  };
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      console.log('Searching for:', searchQuery);
+      // Add your search logic here
+      // router.push(`/search?q=${searchQuery}`);
+    }
+  };
+
+  const closeAllDropdowns = () => {
+    setAboutDropdownOpen(false);
+    setFeaturesDropdownOpen(false);
+  };
+
   const AboutDropdownContent = () => (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-10">
+    <div className="w-[170px]">
       <div>
-        <h3 className="text-sm font-medium text-purple-600 mb-2 border-b pb-1.5">iDonate For</h3>
+        <h3 className="text-sm font-medium text-purple-600 mb-2 border-b pb-1.5">About Us</h3>
         <ul className="space-y-2">
           <li>
             <Link
-              href="/charities"
+              href="/who-are-you"
               className="flex items-center space-x-2 text-gray-700 hover:text-purple-600 transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                closeAllDropdowns();
+              }}
             >
               <HeartHandshake className="h-4 w-4 text-gray-500" />
-              <span>Charities & Causes</span>
+              <span>Who We Are</span>
             </Link>
           </li>
           <li>
             <Link
-              href="/fundraising"
+              href="/how-its-works"
               className="flex items-center space-x-2 text-gray-700 hover:text-purple-600 transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                closeAllDropdowns();
+              }}
             >
               <HeartHandshake className="h-4 w-4 text-gray-500" />
-              <span>Fundraising</span>
+              <span>How It Works</span>
             </Link>
           </li>
           <li>
             <Link
               href="/schools"
               className="flex items-center space-x-2 text-gray-700 hover:text-purple-600 transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                closeAllDropdowns();
+              }}
             >
               <School className="h-4 w-4 text-gray-500" />
-              <span>Schools</span>
+              <span>Blog</span>
             </Link>
           </li>
           <li>
             <Link
-              href="/clubs"
+              href="/contact"
               className="flex items-center space-x-2 text-gray-700 hover:text-purple-600 transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                closeAllDropdowns();
+              }}
             >
               <Club className="h-4 w-4 text-gray-500" />
-              <span>Clubs</span>
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/corporates"
-              className="flex items-center space-x-2 text-gray-700 hover:text-purple-600 transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              <Briefcase className="h-4 w-4 text-gray-500" />
-              <span>Corporates</span>
-            </Link>
-          </li>
-        </ul>
-      </div>
-      <div>
-        <h3 className="text-sm font-medium text-purple-600 mb-2 border-b pb-1.5">Tools</h3>
-        <ul className="space-y-2">
-          <li>
-            <Link
-              href="/pricing"
-              className="flex items-center space-x-2 text-gray-700 hover:text-purple-600 transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              <DollarSign className="h-4 w-4 text-gray-500" />
-              <span>Pricing</span>
-            </Link>
-          </li>
-          <li>
-            <Link
-              href="/stories"
-              className="flex items-center space-x-2 text-gray-700 hover:text-purple-600 transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              <Trophy className="h-4 w-4 text-gray-500" />
-              <span>Success Stories</span>
+              <span>Contact Us</span>
             </Link>
           </li>
         </ul>
@@ -123,7 +125,10 @@ export default function Navbar() {
             <Link
               href="/charities"
               className="flex items-center space-x-2 text-gray-700 hover:text-purple-600 transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                closeAllDropdowns();
+              }}
             >
               <HeartHandshake className="h-4 w-4 text-gray-500" />
               <span>Charities & Causes</span>
@@ -133,7 +138,10 @@ export default function Navbar() {
             <Link
               href="/fundraising"
               className="flex items-center space-x-2 text-gray-700 hover:text-purple-600 transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                closeAllDropdowns();
+              }}
             >
               <HeartHandshake className="h-4 w-4 text-gray-500" />
               <span>Fundraising</span>
@@ -143,7 +151,10 @@ export default function Navbar() {
             <Link
               href="/schools"
               className="flex items-center space-x-2 text-gray-700 hover:text-purple-600 transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                closeAllDropdowns();
+              }}
             >
               <School className="h-4 w-4 text-gray-500" />
               <span>Schools</span>
@@ -153,22 +164,16 @@ export default function Navbar() {
             <Link
               href="/clubs"
               className="flex items-center space-x-2 text-gray-700 hover:text-purple-600 transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                closeAllDropdowns();
+              }}
             >
               <Club className="h-4 w-4 text-gray-500" />
               <span>Clubs</span>
             </Link>
           </li>
-          <li>
-            <Link
-              href="/corporates"
-              className="flex items-center space-x-2 text-gray-700 hover:text-purple-600 transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              <Briefcase className="h-4 w-4 text-gray-500" />
-              <span>Corporates</span>
-            </Link>
-          </li>
+
         </ul>
       </div>
       <div>
@@ -178,7 +183,10 @@ export default function Navbar() {
             <Link
               href="/pricing"
               className="flex items-center space-x-2 text-gray-700 hover:text-purple-600 transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                closeAllDropdowns();
+              }}
             >
               <DollarSign className="h-4 w-4 text-gray-500" />
               <span>Pricing</span>
@@ -186,9 +194,12 @@ export default function Navbar() {
           </li>
           <li>
             <Link
-              href="/stories"
+              href="/success-story"
               className="flex items-center space-x-2 text-gray-700 hover:text-purple-600 transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
+              onClick={() => {
+                setIsMobileMenuOpen(false);
+                closeAllDropdowns();
+              }}
             >
               <Trophy className="h-4 w-4 text-gray-500" />
               <span>Success Stories</span>
@@ -220,7 +231,7 @@ export default function Navbar() {
               alt="website logo"
               height={60}
               width={60}
-              className="w-[50px] h-[50px] sm:w-[60px] sm:h-[60px]"
+              className="rounded-xl"
             />
           </Link>
         </div>
@@ -228,7 +239,7 @@ export default function Navbar() {
         {/* Desktop Navigation Links */}
         <div className="hidden lg:flex items-center space-x-8">
           {/* About Dropdown */}
-          <DropdownMenu>
+          <DropdownMenu open={aboutDropdownOpen} onOpenChange={setAboutDropdownOpen}>
             <DropdownMenuTrigger asChild>
               <button className="flex items-center outline-0 space-x-1 cursor-pointer text-gray-700 hover:text-gray-900 transition-colors">
                 <span className="select-none">About</span>
@@ -238,7 +249,7 @@ export default function Navbar() {
               </button>
             </DropdownMenuTrigger>
             <DropdownMenuContent
-              className="w-full p-4 bg-white shadow-lg border border-gray-200 rounded-md mt-2 min-w-[400px]"
+              className="w-full p-4 bg-white shadow-lg border border-gray-200 rounded-md mt-2 "
               align="start"
               sideOffset={10}
             >
@@ -247,7 +258,7 @@ export default function Navbar() {
           </DropdownMenu>
 
           {/* Features Dropdown */}
-          <DropdownMenu>
+          <DropdownMenu open={featuresDropdownOpen} onOpenChange={setFeaturesDropdownOpen}>
             <DropdownMenuTrigger asChild>
               <button className="flex items-center space-x-1 cursor-pointer outline-0 select-auto text-gray-700 hover:text-gray-900 transition-colors">
                 <span className="select-none">Features</span>
@@ -276,7 +287,7 @@ export default function Navbar() {
 
         {/* Desktop Right Side Buttons */}
         <div className="hidden lg:flex items-center space-x-4">
-          <Button variant="ghost" size="icon" className="h-10 w-10">
+          <Button variant="ghost" size="icon" className="h-10 w-10" onClick={toggleSearch}>
             <Search className="h-5 w-5 text-gray-600" />
           </Button>
           <Button
@@ -301,18 +312,44 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Search Button */}
-        <Button variant="ghost" size="icon" className="lg:hidden h-10 w-10">
+        <Button variant="ghost" size="icon" className="lg:hidden h-10 w-10" onClick={toggleSearch}>
           <Search className="h-5 w-5 text-gray-600" />
         </Button>
       </div>
+
+      {/* Search Bar - Opens below navbar */}
+      {isSearchOpen && (
+        <div className="bg-white border-t border-gray-200 py-4 px-4 sm:px-6">
+          <form onSubmit={handleSearch} className="container mx-auto max-w-3xl">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400" />
+              <Input
+                type="text"
+                placeholder="Search charities, fundraisers, causes..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-10 pr-10 py-3 border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                autoFocus
+              />
+              <button
+                type="button"
+                onClick={toggleSearch}
+                className="absolute right-3 cursor-pointer top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="lg:hidden bg-white border-t border-gray-200 py-4 px-4 sm:px-6">
           <div className="space-y-4">
             {/* About Section */}
-            <div className="border-b border-gray-200 pb-4">
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">About</h3>
+            <div className="border-b border-gray-200 pb-4 ">
+              <h3 className="text-lg font-semibold text-gray-900 mb-3 ">About</h3>
               <AboutDropdownContent />
             </div>
 
@@ -368,6 +405,3 @@ export default function Navbar() {
     </nav>
   );
 }
-
-
-

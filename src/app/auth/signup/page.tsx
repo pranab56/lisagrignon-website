@@ -43,6 +43,7 @@ export default function SignUpForm() {
   const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false);
   const [acceptTerms, setAcceptTerms] = useState<boolean>(false);
   const [touched, setTouched] = useState<TouchedFields>({});
+  const [termsError, setTermsError] = useState<string>('');
 
   const router = useRouter();
 
@@ -98,7 +99,7 @@ export default function SignUpForm() {
     });
 
     if (!acceptTerms) {
-      alert('Please accept the Terms and Conditions');
+      setTermsError('Please accept the Terms and Conditions');
       return;
     }
 
@@ -129,7 +130,9 @@ export default function SignUpForm() {
         <div className="w-full max-w-lg shadow-sm border border-gray-100 sm:p-10 p-4 rounded-xl">
           {/* Logo */}
           <div className="flex justify-center mb-8">
-            <Image src={"/icons/logo.png"} alt='website logo' height={0} width={1000} className='w-[60px] h-[60px]' />
+            <div className="w-16 h-16 rounded-xl flex items-center justify-center">
+              <Image src={"/icons/Logo.png"} alt='website logo' height={60} width={60} className='rounded-xl' />
+            </div>
           </div>
 
           <h1 className="text-3xl font-bold text-center mb-8 text-gray-900">Sign Up</h1>
@@ -234,27 +237,35 @@ export default function SignUpForm() {
             </div>
 
             {/* Terms and Conditions */}
-            <div className="flex items-center space-x-2">
-              <Checkbox
-                id="terms"
-                checked={acceptTerms}
-                onCheckedChange={(checked: boolean) => setAcceptTerms(checked)}
-              />
-              <label
-                htmlFor="terms"
-                className="text-sm text-gray-600 select-none cursor-pointer"
-              >
-                I accept the{' '}
-                <span className="text-yellow-500 hover:underline cursor-pointer">
-                  Terms and Conditions
-                </span>
-              </label>
+            <div className="space-y-2">
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="terms"
+                  checked={acceptTerms}
+                  onCheckedChange={(checked: boolean) => {
+                    setAcceptTerms(checked);
+                    if (checked) setTermsError('');
+                  }}
+                />
+                <label
+                  htmlFor="terms"
+                  className="text-sm text-gray-600 select-none cursor-pointer"
+                >
+                  I accept the{' '}
+                  <span className="text-yellow-500 hover:underline cursor-pointer">
+                    Terms and Conditions
+                  </span>
+                </label>
+              </div>
+              {termsError && (
+                <p className="text-red-500 text-xs">{termsError}</p>
+              )}
             </div>
 
             {/* Sign Up Button */}
             <Button
               onClick={handleSubmit}
-              className="w-full bg-primary text-gray-900 font-semibold py-6 rounded-lg transition-colors"
+              className="w-full bg-yellow-400 hover:bg-yellow-500 text-gray-900 font-semibold py-6 rounded-lg transition-colors"
             >
               Sign Up <ArrowRight className="ml-2" size={20} />
             </Button>
@@ -263,9 +274,9 @@ export default function SignUpForm() {
             <Button
               type="button"
               variant="outline"
-              className="w-full py-6 rounded-lg border-gray-300 hover:bg-gray-50 transition-colors"
+              className="w-full py-6 rounded-lg border-gray-300 hover:bg-gray-50 transition-colors flex items-center justify-center gap-3"
             >
-              <svg className="w-10 h-10" viewBox="0 0 24 24">
+              <svg className="w-5 h-5" viewBox="0 0 24 24">
                 <path
                   fill="#4285F4"
                   d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
@@ -283,11 +294,11 @@ export default function SignUpForm() {
                   d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
                 />
               </svg>
-              Continue with Google
+              <span className="text-gray-700">Continue with Google</span>
             </Button>
 
             {/* Sign In Link */}
-            <p className="text-center text-sm text-[#6B7280] mt-6">
+            <p className="text-center text-sm text-gray-600 mt-6">
               Already have an account?{' '}
               <span onClick={() => router.push("/auth/signin")} className="text-[#00715D] hover:underline font-medium cursor-pointer">
                 Sign in
@@ -298,14 +309,14 @@ export default function SignUpForm() {
       </div>
 
       {/* Right side - Image */}
-      <div className="hidden lg:block lg:w-1/2 relative">
+      <div className="hidden lg:block lg:w-1/2 relative bg-gray-100">
         <Image
           src="/images/auth/auth.jpg"
-          alt="Mountain climbers"
+          alt="Charity donation jar"
           fill
-          className="object-fill"
+          className="object-cover"
           placeholder="blur"
-          blurDataURL="/images/blur-placeholder.jpg" // small low-res image
+          blurDataURL="/images/blur-placeholder.jpg"
         />
       </div>
     </div>

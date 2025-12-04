@@ -29,11 +29,15 @@ export default function RafflesSection() {
 
           {/* Right Content - Text and CTA */}
           <div className="space-y-6">
-            <Badge className="bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 text-sm font-medium">
+            <Badge className="bg-[#00715D] flex gap-3 hover:bg-teal-700 text-white px-4 py-2 text-sm font-medium">
               Raffles
-              <span className="ml-2 bg-red-500 text-white text-xs px-2 py-0.5 rounded">
-                HOT
-              </span>
+              <Image
+                src="/icons/tickit.png"
+                width={1000}
+                height={1000}
+                alt="Happy celebration with confetti"
+                className="w-8 h-8 object-cover"
+              />
             </Badge>
 
             <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">

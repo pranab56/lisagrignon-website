@@ -5,12 +5,14 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { ChangeEvent, KeyboardEvent, useState } from 'react';
 
 export default function ForgetPassword() {
   const [email, setEmail] = useState<string>('');
   const [error, setError] = useState<string>('');
   const [touched, setTouched] = useState<boolean>(false);
+  const router = useRouter();
 
   const validateEmail = (value: string): string => {
     if (value.trim() === '') {
@@ -48,14 +50,17 @@ export default function ForgetPassword() {
 
     if (!validationError) {
       console.log('Password reset requested for:', email);
-      alert(`Password reset link has been sent to ${email}`);
+      router.push("/auth/forgot-password/verify-email");
     }
   };
 
   const handleKeyPress = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'Enter') {
       handleNext();
+      e.preventDefault();
+      router.push("/auth/forgot-password/verify-email");
     }
+
   };
 
   return (
@@ -65,7 +70,9 @@ export default function ForgetPassword() {
         <div className="w-full max-w-lg shadow-sm border border-gray-100 sm:p-10 p-4 rounded-xl">
           {/* Logo */}
           <div className="flex justify-center mb-8">
-            <Image src={"/icons/logo.png"} alt='website logo' height={0} width={1000} className='w-[60px] h-[60px]' />
+            <div className="w-16 h-16 rounded-xl flex items-center justify-center">
+              <Image src={"/icons/Logo.png"} alt='website logo' height={60} width={60} className='rounded-xl' />
+            </div>
           </div>
 
           <h1 className="text-3xl font-bold text-center mb-3 text-gray-900">
@@ -109,14 +116,14 @@ export default function ForgetPassword() {
       </div>
 
       {/* Right side - Image */}
-      <div className="hidden lg:block lg:w-1/2 relative">
+      <div className="hidden lg:block lg:w-1/2 relative bg-gray-100">
         <Image
           src="/images/auth/auth.jpg"
-          alt="Mountain climbers"
+          alt="Charity donation jar"
           fill
-          className="object-fill"
+          className="object-cover"
           placeholder="blur"
-          blurDataURL="/images/blur-placeholder.jpg" // small low-res image
+          blurDataURL="/images/blur-placeholder.jpg"
         />
       </div>
     </div>

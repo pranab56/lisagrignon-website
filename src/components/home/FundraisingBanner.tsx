@@ -32,7 +32,7 @@ export function FundraisingBanner() {
             onClick={() => router.push('/fundraising')}
           >
             <span className="flex items-center space-x-1 sm:space-x-2">
-              <span>Start Now</span>
+              <span>Start Fundraiser</span>
               <ArrowRight className="h-3 w-3 sm:h-4 sm:w-4 md:h-5 md:w-5 ml-0.5 sm:ml-1" />
             </span>
           </Button>

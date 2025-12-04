@@ -152,10 +152,12 @@ export default function FundraisingForm() {
             variant="secondary"
             className="mb-4 bg-black text-white hover:bg-gray-800"
           >
-            Start Now <span className="ml-1">🚀</span>
+            Start Now <span className="ml-1">
+              <Image src="/icons/research.png" alt="arrow-right" width={25} height={25} className='w-full h-full' />
+            </span>
           </Button>
-          <h1 className="text-2xl sm:text-3xl font-bold mb-2">Create a fundraising page</h1>
-          <p className="text-sm sm:text-base opacity-80">How should your fundraising page be configured?</p>
+          <h1 className="text-2xl sm:text-4xl font-bold mb-2">Create a fundraising page</h1>
+          <p className="text-sm sm:text-lg opacity-80">How should your fundraising page be configured?</p>
         </div>
       </div>
 

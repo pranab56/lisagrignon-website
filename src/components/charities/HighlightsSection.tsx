@@ -39,7 +39,7 @@ export default function HighlightsSection() {
         {/* Highlights Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {highlights.map((highlight, index) => (
-            <Card key={index} className="bg-white border-0 shadow-sm hover:shadow-md transition-shadow">
+            <Card key={index} className="border-0 shadow-none">
               <CardContent className="pt-8 px-6 pb-8">
                 <h3 className="text-xl font-bold text-gray-900 mb-4">
                   {highlight.title}

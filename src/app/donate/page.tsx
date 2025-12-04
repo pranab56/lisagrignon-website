@@ -1,6 +1,7 @@
 // app/donate/page.tsx
 "use client";
 
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import AmountStep from '../../components/donate/AmountStep';
 import DetailsStep from '../../components/donate/DetailsStep';
@@ -13,55 +14,30 @@ export interface ValidationErrors {
   firstName?: string;
   surname?: string;
   email?: string;
+  cardNumber?: string;
   cardName?: string;
   expirationDate?: string;
   cvc?: string;
 }
 
-export interface DonationStepProps {
-  donationType: 'one-time' | 'monthly';
-  setDonationType: (type: 'one-time' | 'monthly') => void;
-  amount: number;
-  setAmount: (amount: number) => void;
-  customAmount: string;
-  setCustomAmount: (amount: string) => void;
-  firstName: string;
-  setFirstName: (name: string) => void;
-  surname: string;
-  setSurname: (name: string) => void;
-  message: string;
-  setMessage: (message: string) => void;
-  email: string;
-  setEmail: (email: string) => void;
-  cardName: string;
-  setCardName: (name: string) => void;
-  expirationDate: string;
-  setExpirationDate: (date: string) => void;
-  cvc: string;
-  setCvc: (cvc: string) => void;
-  errors: ValidationErrors;
-  onNext: () => void;
-  onConfirm: () => void;
-}
-
 // Main App Component
 const DonationApp = () => {
   const [step, setStep] = useState<number>(1);
-  const [donationType, setDonationType] = useState<'one-time' | 'monthly'>('one-time');
-  const [amount, setAmount] = useState<number>(50);
-  const [customAmount, setCustomAmount] = useState<string>('30');
+  const [amount, setAmount] = useState<number>(30);
+  const [customAmount, setCustomAmount] = useState<string>('');
   const [firstName, setFirstName] = useState<string>('');
   const [surname, setSurname] = useState<string>('');
   const [message, setMessage] = useState<string>('');
   const [email, setEmail] = useState<string>('');
+  const [cardNumber, setCardNumber] = useState<string>('');
   const [cardName, setCardName] = useState<string>('');
   const [expirationDate, setExpirationDate] = useState<string>('');
   const [cvc, setCvc] = useState<string>('');
   const [showSuccess, setShowSuccess] = useState<boolean>(false);
   const [errors, setErrors] = useState<ValidationErrors>({});
+  const router = useRouter();
 
-  const presetAmounts = [10, 50, 45, 100];
-  const contribution = 20.00;
+  const contribution = 5.00;
   const totalPayment = amount + contribution;
 
   const validateAmountStep = (): boolean => {
@@ -101,6 +77,13 @@ const DonationApp = () => {
       newErrors.email = 'Email is required';
     } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       newErrors.email = 'Please enter a valid email address';
+    }
+
+    const cardDigits = cardNumber.replace(/\s/g, '');
+    if (!cardNumber.trim()) {
+      newErrors.cardNumber = 'Card number is required';
+    } else if (cardDigits.length < 13 || cardDigits.length > 16) {
+      newErrors.cardNumber = 'Please enter a valid card number';
     }
 
     if (!cardName.trim()) {
@@ -144,12 +127,14 @@ const DonationApp = () => {
   };
 
   const handleBackToHome = () => {
-    setStep(1);
-    setAmount(50);
+    router.push("/fundraising");
+    setAmount(30);
+    setCustomAmount('');
     setFirstName('');
     setSurname('');
     setMessage('');
     setEmail('');
+    setCardNumber('');
     setCardName('');
     setExpirationDate('');
     setCvc('');
@@ -162,11 +147,8 @@ const DonationApp = () => {
       case 1:
         return (
           <AmountStep
-            donationType={donationType}
-            setDonationType={setDonationType}
             amount={amount}
             setAmount={setAmount}
-            presetAmounts={presetAmounts}
             customAmount={customAmount}
             setCustomAmount={setCustomAmount}
             errors={errors}
@@ -184,7 +166,6 @@ const DonationApp = () => {
             setMessage={setMessage}
             errors={errors}
             onNext={handleNextFromDetails}
-            amount={amount}
           />
         );
       case 3:
@@ -195,6 +176,8 @@ const DonationApp = () => {
             totalPayment={totalPayment}
             email={email}
             setEmail={setEmail}
+            cardNumber={cardNumber}
+            setCardNumber={setCardNumber}
             cardName={cardName}
             setCardName={setCardName}
             expirationDate={expirationDate}
@@ -211,54 +194,56 @@ const DonationApp = () => {
   };
 
   return (
-    <div className="">
-      <div className='bg-[#00715D] h-[300px]'></div>
-      <div className="relative z-10 -top-64 flex items-center justify-center min-h-screen p-3 sm:p-4 md:p-6">
-        <div className="w-full max-w-md sm:max-w-lg md:max-w-xl lg:max-w-2xl">
-          {/* Success Modal */}
-          {showSuccess && (
-            <SuccessModal onBackToHome={handleBackToHome} />
-          )}
-
-          {/* Main Card */}
-          <div className="bg-white rounded-xl sm:rounded-2xl shadow-lg sm:shadow-xl overflow-hidden">
+    <div className="h-[1300px]">
+      {showSuccess && <SuccessModal onBackToHome={handleBackToHome} />}
+      <div className='bg-[#00715D] h-[299px]'>
+        <div className="max-w-2xl mx-auto pt-32">
+          <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
             {/* Header */}
-            <div className="bg-gradient-to-br from-yellow-400 via-green-400 to-purple-500 p-4 sm:p-5 md:p-6 relative overflow-hidden">
-              <div className="absolute inset-0 opacity-30">
-                <svg className="w-full h-full" viewBox="0 0 400 200" preserveAspectRatio="none">
-                  <path d="M0,80 Q100,50 200,80 T400,80 L400,0 L0,0 Z" fill="rgba(255,255,255,0.3)" />
-                  <path d="M0,120 Q100,90 200,120 T400,120 L400,0 L0,0 Z" fill="rgba(255,255,255,0.2)" />
-                </svg>
-              </div>
-              <div className="bg-white rounded-lg p-3 sm:p-4 relative">
-                <div className="flex items-center gap-2 sm:gap-3">
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 flex-shrink-0">
-                    <svg viewBox="0 0 100 100" className="w-full h-full">
-                      <circle cx="50" cy="35" r="25" fill="#FFB800" />
-                      <path d="M50,35 L45,25 L50,15 L55,25 Z" fill="#FFB800" />
-                      <path d="M50,35 L60,28 L70,23 L62,30 Z" fill="#FFB800" />
-                      <path d="M50,35 L60,42 L70,47 L62,40 Z" fill="#FFB800" />
-                      <path d="M50,35 L40,42 L30,47 L38,40 Z" fill="#FFB800" />
-                      <path d="M50,35 L40,28 L30,23 L38,30 Z" fill="#FFB800" />
-                      <text x="50" y="75" textAnchor="middle" fill="#0066B3" fontSize="14" fontWeight="bold">North West</text>
-                      <text x="50" y="90" textAnchor="middle" fill="#0066B3" fontSize="14" fontWeight="bold">Hospice</text>
-                    </svg>
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <h1 className="text-sm sm:text-base md:text-lg font-bold text-gray-900 truncate">North West Hospice</h1>
-                    <p className="text-xs sm:text-sm text-gray-600">Your donation will go to:</p>
-                    <p className="text-xs sm:text-sm font-medium text-gray-900 truncate">North West Hospice</p>
-                  </div>
+            <div className="bg-white p-6 border-b">
+              <div className="flex items-start gap-4">
+                <div className="w-20 h-20 flex-shrink-0">
+                  <svg viewBox="0 0 100 120" className="w-full h-full">
+                    {/* Happy figure */}
+                    <circle cx="50" cy="30" r="15" fill="#4ADE80" />
+                    <path d="M35,50 Q35,35 50,30 Q65,35 65,50 L65,70 Q65,80 50,85 Q35,80 35,70 Z" fill="#4ADE80" />
+
+                    {/* Happy face */}
+                    <circle cx="42" cy="28" r="2" fill="white" />
+                    <circle cx="58" cy="28" r="2" fill="white" />
+                    <path d="M45,33 Q50,38 55,33" stroke="white" strokeWidth="2" fill="none" />
+
+                    {/* Stars around */}
+                    <circle cx="30" cy="20" r="2" fill="#FCD34D" />
+                    <circle cx="70" cy="20" r="2" fill="#FCD34D" />
+                    <circle cx="35" cy="65" r="2" fill="#FCD34D" />
+                    <circle cx="65" cy="65" r="2" fill="#FCD34D" />
+
+                    {/* Text */}
+                    <text x="50" y="95" textAnchor="middle" fill="#059669" fontSize="10" fontWeight="bold">RETURN</text>
+                    <text x="50" y="103" textAnchor="middle" fill="#059669" fontSize="6">for</text>
+                    <text x="50" y="113" textAnchor="middle" fill="#10B981" fontSize="11" fontWeight="bold">Children</text>
+                  </svg>
+                </div>
+                <div className="flex-1">
+                  <h1 className="text-lg font-bold text-gray-900 mb-1">
+                    Return for Children<br />Fundraising Page
+                  </h1>
+                  <p className="text-xs text-gray-600 mb-2">Your donation will go to:</p>
+                  <p className="text-xs text-gray-800 leading-relaxed">
+                    The Jack & Jill Children's Foundation, LauraLynn Ireland's Children's Hospice,
+                    ISPCC Childline, Barretstown, Barnardos and Make-A-Wish Ireland
+                  </p>
                 </div>
               </div>
             </div>
 
             {/* Content */}
-            <div className="p-4 sm:p-5 md:p-6">
+            <div className="p-6">
               {renderStep()}
 
               {/* Progress Indicators */}
-              <div className="mt-4 sm:mt-5 md:mt-6 space-y-1 sm:space-y-2">
+              <div className="mt-6 space-y-2">
                 <ProgressItem label="Details" active={step >= 2} current={step === 2} />
                 <ProgressItem label="Payment" active={step >= 3} current={step === 3} />
                 <ProgressItem label="Success" active={false} current={false} />
@@ -267,7 +252,7 @@ const DonationApp = () => {
               {/* Cancel Button */}
               <button
                 onClick={handleBackToHome}
-                className="w-full mt-3 sm:mt-4 border-2 border-teal-600 text-teal-600 py-2 sm:py-3 rounded-lg font-medium hover:bg-teal-50 transition text-sm sm:text-base"
+                className="w-full mt-4 border-2 border-teal-600 text-teal-600 py-3 rounded-lg font-medium hover:bg-teal-50 transition"
               >
                 Cancel and return to page
               </button>

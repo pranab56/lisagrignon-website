@@ -43,7 +43,7 @@ export default function FeaturesTabs() {
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 style={{ animationDelay: `${index * 100}ms` }}
-                className={`px-2 xs:px-3 sm:px-4 md:px-6 lg:px-8 py-1.5 xs:py-2 sm:py-3 rounded-md xs:rounded-lg sm:rounded-xl cursor-pointer font-medium text-xs xs:text-sm sm:text-base md:text-lg transition-all duration-300 transform hover:scale-105 active:scale-95 animate-slide-up flex-1 min-w-[80px] xs:min-w-[100px] sm:min-w-[120px] md:min-w-[140px] ${activeTab === tab.id
+                className={`px-2 xs:px-3 sm:px-4 md:px-6 lg:px-8 py-1.5 xs:py-2 sm:py-3 rounded-md xs:rounded-lg sm:rounded-xl cursor-pointer font-medium text-xs xs:text-sm sm:text-base md:text-base transition-all duration-300 transform hover:scale-105 active:scale-95 animate-slide-up flex-1 min-w-[80px] xs:min-w-[100px] sm:min-w-[120px] md:min-w-[140px] ${activeTab === tab.id
                   ? 'bg-gradient-to-r from-teal-600 to-teal-700 text-white shadow-lg shadow-teal-700/30 hover:from-teal-700 hover:to-teal-800'
                   : 'bg-white/60 backdrop-blur-sm text-gray-700 hover:bg-white/80 hover:shadow-md border border-gray-200/50'
                   }`}

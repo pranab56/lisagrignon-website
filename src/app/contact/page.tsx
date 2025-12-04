@@ -28,6 +28,7 @@ import {
   Underline as UnderlineIcon,
   Undo
 } from 'lucide-react';
+import Image from 'next/image';
 import React, { useState } from 'react';
 
 // Define types
@@ -148,7 +149,13 @@ const ContactForm: React.FC = () => {
       <div className="text-center text-white bg-[#00715D] flex justify-center items-center flex-col px-3 sm:px-4 md:px-6 w-full h-48 sm:h-56 md:h-64 lg:h-80">
         <div className="inline-flex items-center gap-2 bg-black/30 backdrop-blur-sm px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full mb-2 sm:mb-3 md:mb-4">
           <span className="text-xs sm:text-sm md:text-base font-medium">Quick Support</span>
-          <span className="text-sm sm:text-base md:text-lg">😊</span>
+          <Image
+            width={1000}
+            height={1000}
+            src="/icons/quick-response.png"
+            alt="Arrow Right"
+            className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6"
+          />
         </div>
         <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold px-2 sm:px-4 leading-tight">
           Need Assistance? We&#39;re Just a Click Away!

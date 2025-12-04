@@ -1,5 +1,6 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import RafflesBanner from '../../components/raffles/RafflesBanner';
 import Step1Form from '../../components/raffles/Step1Form';
@@ -30,6 +31,7 @@ export default function PronabPage() {
   const [step, setStep] = useState(1);
   const [step1Data, setStep1Data] = useState<Step1FormData | null>(null);
   const [ticketOptions, setTicketOptions] = useState<TicketOption[]>([]);
+  const router = useRouter();
 
   const handleStep1Next = (data: Step1FormData) => {
     setStep1Data(data);
@@ -52,6 +54,8 @@ export default function PronabPage() {
     };
 
     console.log('Complete Raffle Data:', allData);
+    router.push('/raffles/sdfw2342');
+
     alert('🎉 Raffle created successfully!');
 
     // You can send this data to your API here

@@ -9,8 +9,16 @@ import { useRouter } from 'next/navigation';
 export default function Hero() {
   const router = useRouter();
 
-  const handleSubmit = () => {
+  const handleStartNow = () => {
     router.push('/fundraising');
+  };
+
+  const handleCreateRaffle = () => {
+    router.push('/raffles');
+  };
+
+  const handleCrowdfunding = () => {
+    router.push('/register');
   };
 
   const features = [
@@ -38,7 +46,7 @@ export default function Hero() {
         <div className="container mx-auto px-4 sm:px-6 py-12 md:py-16 lg:py-20">
           <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
             {/* Left Content */}
-            <div className="space-y-6 md:space-y-8 text-center lg:text-left">
+            <div className="space-y-6 md:space-y-8 text-left">
               <div className="inline-flex items-center gap-2 bg-emerald-600 text-white px-4 py-2 rounded-full text-sm font-medium">
                 <span>Making Giving Easier</span>
                 <Heart className="w-4 h-4 fill-white" />
@@ -48,17 +56,32 @@ export default function Hero() {
                 Raise Money for Your Cause with an Online Prize Draw
               </h1>
 
-              <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
-                Lorem ipsum dolor sit amet consectetur. Nulla parturient ut viverra facilisis sagittis sed. Bibendum imperdiet curabitur platea facilisis venenatis. Interdum porta tellus nam.
+              <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
+                Raise More With Online Fundraising Raffles Create your raffle page in minutes and start raising money for your charity, CIC, community cause or sponsored event.
               </p>
 
               <div className="space-y-4">
-                <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+                <div className="flex flex-col sm:flex-row gap-3">
                   <Button
-                    onClick={handleSubmit}
-                    className="bg-yellow-500 hover:bg-yellow-600 text-slate-900 font-semibold h-12 px-6 sm:px-8 lg:px-10 w-full sm:w-auto whitespace-nowrap text-sm sm:text-base"
+                    onClick={handleStartNow}
+                    className="bg-yellow-400 hover:bg-yellow-500 text-slate-900 font-semibold h-12 px-6  sm:px-8 rounded-md"
                   >
-                    Start Now - It&apos;s Free! <ArrowRight className="ml-2 w-4 h-4" />
+                    Start Now -It's Free! <ArrowRight className="ml-3  w-4 h-4" />
+                  </Button>
+                  <Button
+                    onClick={handleCreateRaffle}
+                    className="bg-teal-600 hover:bg-teal-700 text-white font-semibold h-12 px-6 sm:px-8 rounded-md"
+                  >
+                    Create Your Raffle <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
+                </div>
+                <div>
+                  <Button
+                    onClick={handleCrowdfunding}
+                    variant="outline"
+                    className="border-gray-600 bg-gray-500  hover:bg-gray-500 text-white hover:text-gray-200 font-semibold h-12 px-6 sm:px-8 rounded-md"
+                  >
+                    Set up a Crowdfunding Page <ArrowRight className="ml-2 w-4 h-4" />
                   </Button>
                 </div>
               </div>
@@ -144,9 +167,9 @@ export default function Hero() {
       </div>
 
       {/* Features Section - Responsive */}
-      <div className="py-12 md:py-16 lg:py-20 relative lg:absolute lg:-bottom-[300px] w-full">
+      <div className="py-12  md:py-16 lg:py-20 relative lg:absolute lg:-bottom-[300px] w-full">
         <div className="container mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 max-w-6xl mx-auto">
             {features.map((feature, index) => (
               <Card key={index} className="border-0 shadow-lg hover:shadow-xl transition-shadow bg-white">
                 <CardHeader className="text-center pb-3">

@@ -268,15 +268,15 @@ export default function Step1Form({ formData, updateField, setStep, canProceed }
               className="bg-yellow-50/50 mt-1 w-full"
             />
           </div>
-          <div>
+          <div className=''>
             <Label htmlFor="country">
               Country <span className="text-red-500">*</span>
             </Label>
             <Select value={formData.country} onValueChange={(value) => updateField('country', value)}>
-              <SelectTrigger className="bg-yellow-50/50 mt-1 w-full">
+              <SelectTrigger className="bg-yellow-50/50 mt-1 w-full h-12 py-5">
                 <SelectValue placeholder="Select" />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className=''>
                 <SelectItem value="us">United States</SelectItem>
                 <SelectItem value="uk">United Kingdom</SelectItem>
                 <SelectItem value="ca">Canada</SelectItem>
@@ -289,7 +289,7 @@ export default function Step1Form({ formData, updateField, setStep, canProceed }
               Employee <span className="text-red-500">*</span>
             </Label>
             <Select value={formData.employee} onValueChange={(value) => updateField('employee', value)}>
-              <SelectTrigger className="bg-yellow-50/50 mt-1 w-full">
+              <SelectTrigger className="bg-yellow-50/50 mt-1 w-full py-5">
                 <SelectValue placeholder="Select" />
               </SelectTrigger>
               <SelectContent>

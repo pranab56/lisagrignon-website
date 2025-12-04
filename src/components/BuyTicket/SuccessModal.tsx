@@ -30,7 +30,7 @@ export const SuccessModal: React.FC<SuccessModalProps> = ({ isOpen, onClose }) =
           </p>
 
           <Button
-            onClick={() => router.push('/')}
+            onClick={() => router.push('/raffles/sdfw2342')}
             variant="outline"
             className="border-2 border-teal-600 text-teal-600 hover:bg-teal-50 font-medium px-6 sm:px-8 text-sm sm:text-base"
           >
